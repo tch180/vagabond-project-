@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import {Parallax} from 'react-parallax'
 
 const CityContainer = styled.div `
+    background: #984343;
     border: 1px solid grey;
     margin: 40px 120px;
-    box-shadow: 3px 3px 10px grey;
+    box-shadow: 3px 3px 10px #99864A;
     img {
         width: 400px;
         height: 250px;
@@ -14,11 +15,21 @@ const CityContainer = styled.div `
     h3 {
         text-align: center;
     }
+    @media only screen and (max-width: 400px) {
+        margin: 10px 0px;
+        img {
+            width: 250px;
+            height: 150px;
+        }
+    }
 `
 const CityList = styled.div `
+    background: #233237;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    color: #18121E;
+    @media
 `
 
 const HeroContainer = styled.div `
@@ -39,6 +50,11 @@ const HeroContainer = styled.div `
             font-size: 4em;
         }
     }
+    @media only screen and (max-width: 400px) {
+        h1{
+            font-size: 1em;
+        }
+    }
 `
 
 class HomePage extends Component {
@@ -57,20 +73,20 @@ class HomePage extends Component {
                 </HeroContainer>
                 <CityList>
                     <CityContainer>
-                        <img src="../../../images/placeholder-4-500x300.png" alt="city"/>
-                        <h3>City 1</h3>
+                        <img src="../../../images/atlanta.jpg" alt="city"/>
+                        <h3>Atlanta</h3>
                     </CityContainer>
                     <CityContainer>
-                        <img src="../../../images/placeholder-4-500x300.png" alt="city"/>
-                        <h3>City 2</h3>
+                        <img src="../../../images/rome-skyline-wallpaper-wallpaper-2.jpg" alt="city"/>
+                        <h3>Vatican City</h3>
                     </CityContainer>
                     <CityContainer>
-                        <img src="../../../images/placeholder-4-500x300.png" alt="city"/>
-                        <h3>City 3</h3>
+                        <img src="../../../images/skyline-seattle_3461539a.jpg" alt="city"/>
+                        <h3>Seatle</h3>
                     </CityContainer>
                     <CityContainer>
-                        <img src="../../../images/placeholder-4-500x300.png" alt="city"/>
-                        <h3>City 4</h3>
+                        <img src="../../../images/b09b58dff54f7d4c1e2a80415c03e40a.jpg" alt="city"/>
+                        <h3>Dubai</h3>
                     </CityContainer>
                 </CityList>
             </div>
