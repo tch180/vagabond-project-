@@ -6,6 +6,7 @@ const BodyWrapper = styled.div`
 background-color: darkgray;
 display: flex;
 justify-content: space-between;
+padding: 10px 10px 10px 10px;
 `
 const LinkMenu = styled.div`
 a {
@@ -19,7 +20,7 @@ class NavBar extends Component {
         return (
             <BodyWrapper>
                 <div>
-                    Vegabond Travel
+                    <h3>Vegabond Travel</h3>
                     </div>
                 <LinkMenu>
                 Login | Sign Up
