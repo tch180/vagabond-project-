@@ -93,7 +93,7 @@ class HomePage extends Component {
                 </HeroContainer>
                 <CityList>
                     {this.state.cities.map((city) => {
-                        return ( <Link to={`/`}><CityContainer>
+                        return ( <Link to={`/city/${city.id}`}><CityContainer>
                             <img src={city.image}/>
                             <h3>{city.name}</h3>
                         </CityContainer>
