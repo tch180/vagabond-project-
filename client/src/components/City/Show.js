@@ -13,11 +13,19 @@ const HeaderContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-self: center;
+text-align: center;
+img {
+max-width: 100%;
+height: 500px;
+}
 `
 const PostContainer = styled.div`
 display: flex;
 flex-direction: row;
 align-self: center;
+`
+const InfoBar = styled.div`
+
 `
 
 class CityShow extends Component {
@@ -25,8 +33,8 @@ class CityShow extends Component {
         return (
             <Container>
                 <HeaderContainer>
-                    <div>Image</div>
-                    <div>Nav</div>
+                    <div><img src='../images/atlanta.jpg' /></div><br />
+                   <InfoBar>Nav</InfoBar>
                 </HeaderContainer>
                 <PostContainer>
                     <div>This is a post!</div>
