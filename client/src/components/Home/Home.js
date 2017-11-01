@@ -69,7 +69,7 @@ class HomePage extends Component {
     
     async componentWillMount() {
         try {
-            const res =await axios.get('api/cities')
+            const res =await axios.get('/api/cities')
             console.log(res.data.id)
             this.setState({ cities: res.data})
         }catch(error){
@@ -93,11 +93,12 @@ class HomePage extends Component {
                 </HeroContainer>
                 <CityList>
                     {this.state.cities.map((city) => {
-                        return ( <Link to={`/city/${city.id}`}><CityContainer>
+                        return ( <CityContainer><Link to={`/city/${city.id}`}>
                             <img src={city.image}/>
                             <h3>{city.name}</h3>
+                            </Link>
                         </CityContainer>
-                        </Link>
+                        
 
                         )
                     })}

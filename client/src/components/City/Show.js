@@ -29,19 +29,43 @@ const InfoBar = styled.div`
 `
 
 class CityShow extends Component {
+    state = {
+        cities: {
+            posts: []
+        }
+    }
+    
+    async componentWillMount() {
+     this.getCityInfo()
+        
+    }
+    getCityInfo = async () => {
+        try {
+            const cityId = this.props.match.params.cityId
+            
+            const res = await axios.get(`/api/cities/${cityId}`)
+            console.log(res.data)
+            this.setState({ cities: res.data})
+        }catch(error){
+            console.log(error)
+        }
+    }
     render() {
         return (
             <Container>
                 <HeaderContainer>
-                    <div><img src='../images/atlanta.jpg' /></div><br />
-                   <InfoBar>Nav</InfoBar>
+                    <div><img src={this.state.cities.image} /></div><br />
+                   <InfoBar>City: {this.state.cities.name} Region: {this.state.cities.region} Country: {this.state.cities.country}</InfoBar>
                 </HeaderContainer>
                 <PostContainer>
-                    <div>This is a post!</div>
-                    <div>This is a post!</div>
-                    <div>This is a post!</div>
-                    <div>This is a post!</div>
-                    <div>This is a post!</div>
+                    
+                    {this.state.cities.posts.map(post => {
+                        return( 
+                        <div>
+                            <div>{post.title}</div>
+                        </div>)
+                    })}
+                    
                     
                 </PostContainer>
             </Container>
