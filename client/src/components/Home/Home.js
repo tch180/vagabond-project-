@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
 import {Parallax} from 'react-parallax'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import axios from 'axios'
 
 const CityContainer = styled.div `
     background: #984343;
@@ -61,6 +63,21 @@ const HeroContainer = styled.div `
 `
 
 class HomePage extends Component {
+    state = {
+        cities: []
+    }
+    
+    async componentWillMount() {
+        try {
+            const res =await axios.get('api/cities')
+            console.log(res.data.id)
+            this.setState({ cities: res.data})
+        }catch(error){
+            console.log(error)
+        }
+        
+    }
+    
     render() {
         return (
             <div>
@@ -75,22 +92,16 @@ class HomePage extends Component {
                     </div>
                 </HeroContainer>
                 <CityList>
-                    <CityContainer>
-                        <img src="../../../images/atlanta.jpg" alt="city"/>
-                        <h3>Atlanta</h3>
-                    </CityContainer>
-                    <CityContainer>
-                        <img src="../../../images/rome-skyline-wallpaper-wallpaper-2.jpg" alt="city"/>
-                        <h3>Vatican City</h3>
-                    </CityContainer>
-                    <CityContainer>
-                        <img src="../../../images/skyline-seattle_3461539a.jpg" alt="city"/>
-                        <h3>Seatle</h3>
-                    </CityContainer>
-                    <CityContainer>
-                        <img src="../../../images/b09b58dff54f7d4c1e2a80415c03e40a.jpg" alt="city"/>
-                        <h3>Dubai</h3>
-                    </CityContainer>
+                    {this.state.cities.map((city) => {
+                        return ( <Link to={`/`}><CityContainer>
+                            <img src={city.image}/>
+                            <h3>{city.name}</h3>
+                        </CityContainer>
+                        </Link>
+
+                        )
+                    })}
+                  
                 </CityList>
             </div>
         );
