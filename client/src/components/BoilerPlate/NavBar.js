@@ -25,7 +25,7 @@ class NavBar extends Component {
         return (
             <BodyWrapper>
                 <div>
-                    <h3>Vegabond Travel</h3>
+                    <h3>Vegabong Travel</h3>
                 </div>
                 <LinkMenu>
                 <Link to="#">Login</Link> | <Link to="#">Sign Up</Link>  

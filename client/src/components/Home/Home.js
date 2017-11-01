@@ -15,8 +15,8 @@ const CityContainer = styled.div `
     h3 {
         text-align: center;
     }
-    @media only screen and (max-width: 400px) {
-        margin: 10px 0px;
+    @media only screen and (max-width: 420px) {
+        margin: 10px 10px;
         img {
             width: 250px;
             height: 150px;
@@ -27,9 +27,9 @@ const CityList = styled.div `
     background: #233237;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     color: #18121E;
-    @media
 `
 
 const HeroContainer = styled.div `
@@ -50,9 +50,12 @@ const HeroContainer = styled.div `
             font-size: 4em;
         }
     }
-    @media only screen and (max-width: 400px) {
-        h1{
+    @media only screen and (max-width: 420px) {
+        height: 36vh;
+        div {
+            h1{
             font-size: 1em;
+            }
         }
     }
 `
