@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Post.destroy_all
+City.destroy_all
+
+atlanta = City.create(name: 'Atlanta', image: 'https://www.homeadvisor.com/images/consumer/hhi/hero-photos/city/Atlanta.jpg', country: 'United States', region: 'Georgia')
+seattle = City.create(name: 'Seattle', image: 'https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57a22b68bebafb39c21fb500/1455126604290/seattle+header.jpeg', country: 'United States', region: 'Washington')
+
+post1 = Post.create(title: 'Come to Seatle, Its Awesome', body: 'I really like Seattle, have lived there for 30 years of my life. There is so much to do especially if you like Asian food and Sushi.', likes: 0, city_id: seattle.id)
+post2 = Post.create(title: 'The Space Needle is the place to be for views', body: 'The space needle has amazing views with 360 viewing deck. They are remodeling the visitor deck with bigger windos all around', likes: 0, city_id: seattle.id)
+post3 = Post.create(title: 'Great City to live, play, and work.', body: "Compared to my hometown of Jacksonville, Florida, Atlanta has been the BEST city to live in. I left Jacksonville back in Jan of 09 when i was just about to turn 25 and moved to Atlanta. Its now 01/24/2017 and Atlanta still continues to make impressive progress on all genres of city living. From Jobs, to recreational events, entertainment, living and so on, Atlanta is on Point. Yes of course there are con's to this city, but what city doesn't? Compare Atlanta to most cities specially in the South, and deep south east, Atlanta is my opinion is a two tier city just a step behind major cities like NYC, Chicago and DC.", likes: 0, city_id: atlanta.id)
+post4 = Post.create(title: 'Armpit of the state', body: "What an awful city that USED to be nice. After the 1996 Olympics, the city has gone completely in the toilet! I have lived here 35 years and watched people pour into this city and destroy it. Crime is awful, that's why it has an 'F' rating. And if there was a rating lower than an F, it would earn that. The traffic is ridiculous, road rage is everywhere. We no longer go downtown because I fear for my family's safety. We are currently looking to move out of state, and in my opinion it can't happen soon enough! Hotlanta? NOTlanta.", likes: 0, city_id: atlanta.id)
