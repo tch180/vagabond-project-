@@ -89,6 +89,15 @@ class CityShow extends Component {
         this.setState({togglePostView: !this.state.togglePostView})
     }
 
+
+    deletePost = async (postId) => {
+        const cityId = this.props.match.params.cityId
+        console.log(this.props.match.params.cityId)
+        const res = await axios.delete(`/api/cities/${cityId}/posts/${postId}`)
+        const city = res.data
+        this.setState({cities: city})
+    }
+    
     showPost = (index) => {
         this.toggleSwitch()
         const post = this.state.cities.posts[index]
@@ -98,6 +107,7 @@ class CityShow extends Component {
     render() {
         const postView = this.state.togglePostView ?
         <ShowPost post={this.state.currentPost} 
+        deletePost={this.deletePost}
         toggleSwitch={this.toggleSwitch} 
         handleUpdateChange={this.handleUpdateChange}
         handleUpdateSubmit={this.handleUpdateSubmit} /> :
