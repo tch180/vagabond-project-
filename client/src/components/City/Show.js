@@ -14,6 +14,7 @@ display: flex;
 flex-direction: column;
 align-self: center;
 text-align: center;
+margin: 0px;
 img {
 max-width: 100%;
 height: 500px;
@@ -21,11 +22,23 @@ height: 500px;
 `
 const PostContainer = styled.div`
 display: flex;
-flex-direction: row;
+flex-direction: column;
 align-self: center;
+text-align: center;
+margin: 10px;
+padding: 10px;
+
 `
 const InfoBar = styled.div`
-
+background: #984343;
+width: 100%;
+padding: 0px;
+margin: 0px;
+`
+const PostBlock = styled.div`
+background: #984343;
+padding: 15px;
+margin: 5px;
 `
 
 class CityShow extends Component {
@@ -61,9 +74,10 @@ class CityShow extends Component {
                     
                     {this.state.cities.posts.map(post => {
                         return( 
-                        <div>
-                            <div>{post.title}</div>
-                        </div>)
+                        <PostBlock>
+                            <div><b>{post.title}</b></div>
+                            <div>{post.body}</div>
+                        </PostBlock>)
                     })}
                     
                     
