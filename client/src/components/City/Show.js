@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Parallax } from 'react-parallax'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
+import ShowPost from '../Post/ShowPost'
 
 const Container = styled.div`
 display: flex;
@@ -45,6 +46,11 @@ class CityShow extends Component {
     state = {
         cities: {
             posts: []
+        },
+        togglePostView: false,
+        currentPost: {
+            title: '',
+            body: ''
         }
     }
     
@@ -57,31 +63,63 @@ class CityShow extends Component {
             const cityId = this.props.match.params.cityId
             
             const res = await axios.get(`/api/cities/${cityId}`)
-            console.log(res.data)
             this.setState({ cities: res.data})
         }catch(error){
             console.log(error)
         }
     }
+
+    handleUpdateChange = (event) =>{
+        const attribute = event.target.name
+        const updatePost = {...this.state.currentPost}
+        updatePost[attribute] = event.target.value
+        this.setState({currentPost: updatePost })
+    }
+
+    handleUpdateSubmit = async (postId) => {
+        const cityId = this.props.match.params.cityId
+        const res = await axios.patch(`/api/cities/${cityId}/posts/${postId}`, {
+            post: this.state.currentPost
+        })
+        const city = res.data
+        this.setState({cities: city})
+    }
+
+    toggleSwitch = () => {
+        this.setState({togglePostView: !this.state.togglePostView})
+    }
+
+    showPost = (index) => {
+        this.toggleSwitch()
+        const post = this.state.cities.posts[index]
+        this.setState({currentPost: post})
+    }
+
     render() {
+        const postView = this.state.togglePostView ?
+        <ShowPost post={this.state.currentPost} 
+        toggleSwitch={this.toggleSwitch} 
+        handleUpdateChange={this.handleUpdateChange}
+        handleUpdateSubmit={this.handleUpdateSubmit} /> :
+        <PostContainer>
+            {/* <Link to="/city/${}" */}
+            {this.state.cities.posts.map((post, index) => {
+                return( 
+                <PostBlock key={index} onClick={() => this.showPost(index)}>
+                    <div><b>{post.title}</b></div>
+                </PostBlock>)
+            })}
+            
+            
+        </PostContainer>
+        
         return (
             <Container>
                 <HeaderContainer>
                     <div><img src={this.state.cities.image} /></div><br />
                    <InfoBar>City: {this.state.cities.name} Region: {this.state.cities.region} Country: {this.state.cities.country}</InfoBar>
                 </HeaderContainer>
-                <PostContainer>
-                    
-                    {this.state.cities.posts.map(post => {
-                        return( 
-                        <PostBlock>
-                            <div><b>{post.title}</b></div>
-                            <div>{post.body}</div>
-                        </PostBlock>)
-                    })}
-                    
-                    
-                </PostContainer>
+                {postView}
             </Container>
         );
     }
