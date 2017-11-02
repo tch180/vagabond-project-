@@ -26,6 +26,31 @@ const PostContent = styled.div `
     
 `
 
+const NewPostContainer = styled.div `
+margin: 40px 120px;
+padding: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+button {
+    color: black;
+    background:white;
+}
+
+input {
+    margin: 10px 0px;
+    font-size: 1.2em;
+}
+
+textarea {
+    width: 45vw;
+    height: 25vh;
+    font-size: 1.2em;
+}
+`
+
 class ShowPost extends Component {
     state = {
         toggleUpdate: false,
@@ -75,10 +100,12 @@ class ShowPost extends Component {
             <img src={this.props.post.image} alt={this.props.post.title} />
             <p>{this.props.post.body}</p>
         </PostContent>
-        const updateView = <div>
+        const updateView = <NewPostContainer>
             <input name="title" type="text" value={this.props.post.title} onChange={this.handleChange} />
+            <input name="image" type="text" value={this.props.post.image} onChange={this.handleChange} />
+            <input name="rating" type="number" className='rating' value={this.props.post.rating} onChange={this.handleChange} />
             <textarea value={this.props.post.body} htmlFor="body" name="body" onChange={this.handleChange} />
-        </div>
+        </NewPostContainer>
         const postView = this.state.toggleUpdate
             ? updateView
             : this.state.toggleDelete ? deleteConfirmation : post

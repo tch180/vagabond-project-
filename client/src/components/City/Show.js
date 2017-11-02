@@ -20,7 +20,7 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 background-color: #233237;
-height: 90vh;
+
 
 `
 const HeaderContainer = styled.div`
@@ -141,12 +141,12 @@ class CityShow extends Component {
             <Container>
                 <HeaderContainer>
                 <InfoBar>City: {this.state.cities.name} Region: {this.state.cities.region} Country: {this.state.cities.country}</InfoBar>
-                    <div><img src={this.state.cities.image} /></div><br />
-                   
+                    <div><img src={this.state.cities.image} /></div><br />  
                 </HeaderContainer>
-                
+                <div>
                 <div>Add Post</div>
                 {postView}
+                </div>
             </Container>
         );
     }
