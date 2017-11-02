@@ -1,10 +1,8 @@
 class Api::PostsController < ApplicationController
 
   def create
-    @city = City.find(params[:city_id])
     @post = Post.new(post_params)
-    @city.posts << @post
-    @city.save!
+    @post.update!(city_id: params[:city_id])
     @city = City.includes(:posts).order('posts.created_at Desc').find(params[:city_id])
     render json: @city, include: [:posts]
   end
@@ -12,7 +10,8 @@ class Api::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update!(post_params)
-    render json: @post
+    @city = City.includes(:posts).order('posts.created_at Desc').find(params[:city_id])
+    render json: @city, include: [:posts]
   end
 
   def destroy
