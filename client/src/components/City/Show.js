@@ -5,9 +5,22 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 import ShowPost from '../Post/ShowPost'
 
+const notPostContainer = styled.div`
+display: flex;
+text-align:center;
+justify-content: center;
+background-color: #233237;
+color: white;
+border: 1px solid grey;
+height: 90vh;
+`
+
+
 const Container = styled.div`
 display: flex;
 flex-direction: column;
+background-color: #233237;
+height: 90vh;
 
 `
 const HeaderContainer = styled.div`
@@ -19,6 +32,7 @@ margin: 0px;
 img {
 max-width: 100%;
 height: 500px;
+box-shadow: 3px 3px 10px #99864A;
 }
 `
 const PostContainer = styled.div`
@@ -126,9 +140,12 @@ class CityShow extends Component {
         return (
             <Container>
                 <HeaderContainer>
+                <InfoBar>City: {this.state.cities.name} Region: {this.state.cities.region} Country: {this.state.cities.country}</InfoBar>
                     <div><img src={this.state.cities.image} /></div><br />
-                   <InfoBar>City: {this.state.cities.name} Region: {this.state.cities.region} Country: {this.state.cities.country}</InfoBar>
+                   
                 </HeaderContainer>
+                
+                <div>Add Post</div>
                 {postView}
             </Container>
         );
