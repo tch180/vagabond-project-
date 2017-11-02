@@ -13,7 +13,7 @@ border-bottom: 5px solid #18121E;
 const LinkMenu = styled.div`
 margin: 20px 0px;
 a {
-    color: #18121E;
+    color: white;
     font-size: 1.1em;
     font-weight: bold;
     text-decoration: none;
