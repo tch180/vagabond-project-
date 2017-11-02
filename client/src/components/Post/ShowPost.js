@@ -1,4 +1,28 @@
 import React, {Component} from 'react';
+import styled from 'styled-components'
+
+
+const PostContainer = styled.div `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+
+const PostContent = styled.div `
+    background: #233237;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 65vw;
+    font-size: 1.4em;
+    img {
+        width: 350px;
+    }
+    
+`
 
 class ShowPost extends Component {
     state = {
@@ -44,10 +68,11 @@ class ShowPost extends Component {
             <button onClick={this.showDelete}>No</button>
         </div>
 
-        const post = <div>
+        const post = <PostContent>
             <h1>{this.props.post.title}</h1>
+            <img src={this.props.post.image} alt={this.props.post.title} />
             <p>{this.props.post.body}</p>
-        </div>
+        </PostContent>
         const updateView = <div>
             <input name="title" type="text" value={this.props.post.title} onChange={this.handleChange} />
             <textarea value={this.props.post.body} htmlFor="body" name="body" onChange={this.handleChange} />
@@ -58,10 +83,14 @@ class ShowPost extends Component {
             
         return (
             <div>
+                <PostContainer>
+                <div>
                 <button onClick={this.props.toggleSwitch}>All Posts</button>
                 <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update Post' }</button>
                 <button onClick={this.showDelete}>Delete Post</button>
+                </div>
                 {postView}
+                </PostContainer>
             </div>
         );
     }
