@@ -1,27 +1,37 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
+
 
 const PostContainer = styled.div`
 display: flex;
 `
 class NewPost extends Component {
     state = {
-        post: [],
+        post: {
+            title: '',
+            body: ''
+        },
         redirectToPost: false,
-        postId: ''
     }
     
         handleChange = (event) => {
             const updatePost = { ...this.state.post }
+            updatePost[event.target.name] = event.target.value
             this.setState({ post: updatePost })
         }
         handleSubmit = async (event) => {
             event.preventDefault()
             const cityId = this.props.match.params.cityId
-            const res = await axios.post(`/api/cities/${cityId}/posts`)
+            const res = await axios.post(`/api/cities/${cityId}/posts`, {
+                post: this.state.post
+            })
+            this.setState({redirectToPost: true})
+            
         }
         render() {
+            if (this.state.redirectToPost) {return <Redirect to={`/city/${this.props.match.params.cityId}`} />}
         return (
             <PostContainer>
                 <div>New Post</div>
@@ -37,7 +47,7 @@ class NewPost extends Component {
                         <label >Body</label>
                          
                             <textarea  value={this.state.post.body} htmlFor="body"
-                            name="body" type="text" text onChange={this.handleChange}/>
+                            name="body" onChange={this.handleChange}/>
                            
                     </div>
                     
