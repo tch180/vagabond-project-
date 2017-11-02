@@ -18,13 +18,16 @@ const NewPostContainer = styled.div `
 background: #984343;
 border: 1px solid grey;
 margin: 40px 120px;
+padding: 40px;
 box-shadow: 3px 3px 10px #99864A;
-width: 35vw;
-height: 45vh;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+
+h2 {
+    margin: 0px;
+}
 
 button {
     color: black;
@@ -74,13 +77,13 @@ class NewPost extends Component {
         return (
             
             <PostContainer>
-                <NewPostContainer>
 
-                <div><h2>New Post</h2></div>
+                
 
                 
                 <form onSubmit={this.handleSubmit}>
-
+                <NewPostContainer>
+                <div><h2>New Post</h2></div>
                     <div><input placeholder='Title of your post' onChange={this.handleChange} name="title"
                 type="text" value={this.state.post.title} /></div>
                        
@@ -101,9 +104,9 @@ class NewPost extends Component {
                     
                     
                     <button>Post!</button>
+                    </NewPostContainer>
                 </form>
               
-                </NewPostContainer>
             </PostContainer>
         );
     }

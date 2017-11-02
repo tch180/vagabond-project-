@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 
 const PostContainer = styled.div `
+    background: #984343;
+    margin: 20px 150px;
+    padding-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +13,6 @@ const PostContainer = styled.div `
 `
 
 const PostContent = styled.div `
-    background: #233237;
     color: white;
     display: flex;
     justify-content: center;

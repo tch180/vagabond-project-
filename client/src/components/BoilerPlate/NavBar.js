@@ -7,7 +7,7 @@ background-color: #984843;
 display: flex;
 justify-content: space-between;
 padding: 10px 10px 10px 10px;
-color: #18121E;
+color: white;
 border-bottom: 5px solid #18121E;
 `
 const LinkMenu = styled.div`
