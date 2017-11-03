@@ -6,17 +6,6 @@ import axios from 'axios'
 import ShowPost from '../Post/ShowPost'
 
 
-/* Don't thing we need this stryling component */
-// const notPostContainer = styled.div`
-// display: flex;
-// text-align:center;
-// justify-content: center;
-// background-color: #233237;
-// color: white;
-// border: 1px solid grey;
-// height: 90vh;
-// `
-
 
 const Container = styled.div`
 display: flex;
@@ -35,7 +24,7 @@ text-align: center;
 margin: 0px;
 img {
 max-width: 100%;
-height: 500px;
+max-height: 60vh;
 margin-top: 20px;
 box-shadow: 3px 3px 10px #18121E;
 }

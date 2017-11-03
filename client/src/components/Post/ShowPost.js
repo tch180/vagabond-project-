@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const PostContainer = styled.div `
     background: #984343;
-    margin: 20px 150px;
+    margin: 20px;
     padding: 15px;
     box-shadow: 3px 3px 10px #18121E;
     display: flex;
@@ -52,7 +52,12 @@ const PostContent = styled.div `
     }
     h1 {
         margin: 0;
-    }  
+    } 
+    @media only screen and (max-width: 668px) {
+        img {
+            width: 75vw;
+        }    
+    }
 `
 const PostDiv = styled.div `
         border: 2px solid white;
@@ -82,7 +87,7 @@ const BodyContainer = styled.div `
 `
 
 const UpdatePostContainer = styled.div `
-margin: 40px 120px;
+margin: 40px;
 padding: 40px;
 border: 2px solid white;
 width: 90%;
@@ -114,6 +119,9 @@ textarea {
     height: 40vh;
     padding: 10px;
 }
+@media only screen and (max-width: 668px) {
+            
+    }
 `
 
 const DeleteConfirm = styled.div `
