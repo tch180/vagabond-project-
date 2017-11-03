@@ -14,8 +14,15 @@ const CityContainer = styled.div `
         height: 250px;
         background: grey;
     }
+    a {
+        text-decoration: none;
+    }
     h3 {
         text-align: center;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        margin: 3px;
     }
     @media only screen and (max-width: 420px) {
         margin: 10px 10px;
