@@ -268,6 +268,11 @@ class ShowPost extends Component {
                 <button onClick={this.showDelete}>Delete</button>
                 </ButtonContainer>
                 {postView}
+                <ButtonContainer>
+                <button onClick={this.props.toggleSwitch}>Posts</button>
+                <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update' }</button>
+                <button onClick={this.showDelete}>Delete</button>
+                </ButtonContainer>
                 </PostContainer>
             </div>
         );
