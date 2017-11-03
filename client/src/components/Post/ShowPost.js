@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const PostContainer = styled.div `
     background: #984343;
     margin: 20px 150px;
-    padding-top: 15px;
+    padding: 15px;
     box-shadow: 3px 3px 10px grey;
     display: flex;
     justify-content: center;
@@ -45,27 +45,46 @@ const PostContent = styled.div `
     width: 65vw;
     font-size: 1.4em;
     img {
-        width: 350px;
+        width: 600px;
+        height: 350px;
+        margin-bottom: 10px;
     }
     h1 {
         margin: 0;
-    }
-    div {
+    }  
+`
+const PostDiv = styled.div `
         border: 2px solid white;
-        width: 90%;
-        text-align: center;
+        width: 110%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         margin: 10px;
-        padding: 10px;
-    }
+        padding: 20px;
+`
+
+const BodyContainer = styled.div `
+    width: 90%;
+    border: none;
+    background: rgba(35,50,55, .6);
     p {
         text-align: left;
+        border: 1px solid white;
+        margin: 10px;
+        padding: 8px;
+        letter-spacing: .05rem;
+        h4 {
+            text-align: center;
+        }
     }
-    
 `
 
 const UpdatePostContainer = styled.div `
 margin: 40px 120px;
 padding: 40px;
+border: 2px solid white;
+width: 90%;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -74,15 +93,42 @@ flex-direction: column;
 
 input {
     margin: 10px 0px;
-    font-size: 1.2em;
+    font-size: 1.8em;
+    background: #984343;
+    box-shadow: 2px 2px 5px grey;
+    color: white;
+    border: 2px solid white;
+    width: 85%;
+    padding: 10px;
 }
 
 textarea {
-    width: 45vw;
-    height: 25vh;
-    font-size: 1.2em;
+    margin: 10px 0px;
+    font-size: 1.8em;
+    background: #984343;
+    box-shadow: 2px 2px 5px grey;
+    color: white;
+    border: 2px solid white;
+    width: 85%;
+    height: 40vh;
+    padding: 10px;
 }
 `
+
+const DeleteConfirm = styled.div `
+    width: 90%;
+    h2 {
+        text-align: center;
+        border: 2px solid white;
+        padding: 20px;
+        font-size: 2.5em;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+    }
+`
+    
 
 class ShowPost extends Component {
     state = {
@@ -95,7 +141,8 @@ class ShowPost extends Component {
             this.handleSubmit(event)
         }
         this.setState({
-            toggleUpdate: !this.state.toggleUpdate
+            toggleUpdate: !this.state.toggleUpdate,
+            toggleDelete: false
         })
     }
 
@@ -122,20 +169,27 @@ class ShowPost extends Component {
     }
 
     render() {
-        const deleteConfirmation = <div>
+        const deleteConfirmation = <DeleteConfirm>
             <h2>Are you sure?</h2>
+            <div>
             <button onClick={this.delete}>Yes</button>
             <button onClick={this.showDelete}>No</button>
-        </div>
+            </div>
+        </DeleteConfirm>
 
         const post = <PostContent>
-            <div>
+            <PostDiv>
             <h1>{this.props.post.title}</h1>
-            </div>
-            <div>
+            </PostDiv>
+            <PostDiv>
             <img src={this.props.post.image} alt={this.props.post.title} />
-            <p>{this.props.post.body}</p>
-            </div>
+            <BodyContainer>
+            <p>
+            <h4>Rating: {this.props.post.rating}/10</h4>
+            {this.props.post.body}
+            </p>
+            </BodyContainer>
+            </PostDiv>
         </PostContent>
         const updateView = <UpdatePostContainer>
             <input name="title" type="text" value={this.props.post.title} onChange={this.handleChange} />
