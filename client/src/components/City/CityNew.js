@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 
-const PostContainer = styled.div `
+const CityContainer = styled.div `
 display: flex;
 text-align:center;
 justify-content: center;
@@ -11,11 +11,11 @@ background-color: #233237;
 color: white;
 `
 
-const NewPostContainer = styled.div `
+const NewCityContainer = styled.div `
 background: #984343;
 border: 1px solid grey;
 padding: 20px;
-box-shadow: 3px 3px 10px #99864A;
+box-shadow: 3px 3px 10px #18121E;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -46,9 +46,9 @@ button {
     line-height: 36px;
     padding: 0 2rem;
     text-transform: uppercase;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
-    0 1px 5px 0 rgba(0, 0, 0, .12),
-    0 3px 1px -2px rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 2px 0 rgba(24,18,30, .14),
+    0 1px 5px 0 rgba(24,18,30, .12),
+    0 3px 1px -2px rgba(24,18,30, .12);
     &:hover {
         background: rgb(198, 165, 103);
     }
@@ -123,10 +123,10 @@ class CityNew extends Component {
             return <Redirect to={'/'}/>
         }
         return (
-            <PostContainer>
+            <CityContainer>
 
                 
-                    <NewPostContainer>
+                    <NewCityContainer>
                     <form onSubmit={this.handleSubmit}>
                             <h2>New City</h2>
                         <input
@@ -160,10 +160,10 @@ class CityNew extends Component {
                         <button>Create City</button>
                         </div>
                         </form>
-                    </NewPostContainer>
+                    </NewCityContainer>
 
 
-            </PostContainer>
+            </CityContainer>
         );
     }
 }

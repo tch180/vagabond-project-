@@ -8,7 +8,7 @@ const CityContainer = styled.div `
     background: #984343;
     border: 1px solid grey;
     margin: 40px 120px;
-    box-shadow: 3px 3px 10px #99864A;
+    box-shadow: 3px 3px 10px #18121E;
     img {
         width: 400px;
         height: 250px;

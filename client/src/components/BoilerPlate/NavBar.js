@@ -6,12 +6,15 @@ const BodyWrapper = styled.div`
 background-color: #984843;
 display: flex;
 justify-content: space-between;
-padding: 10px 10px 10px 10px;
+padding: 0px 10px;
 color: white;
 border-bottom: 5px solid #18121E;
+h3 {
+    margin: 15px;
+}
 `
 const LinkMenu = styled.div`
-margin: 20px 0px;
+margin: 15px 0px;
 a {
     color: white;
     font-size: 1.1em;

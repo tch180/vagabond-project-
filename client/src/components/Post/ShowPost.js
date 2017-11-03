@@ -6,7 +6,7 @@ const PostContainer = styled.div `
     background: #984343;
     margin: 20px 150px;
     padding: 15px;
-    box-shadow: 3px 3px 10px grey;
+    box-shadow: 3px 3px 10px #18121E;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,9 +27,9 @@ const PostContainer = styled.div `
     line-height: 36px;
     padding: 0 2rem;
     text-transform: uppercase;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
-    0 1px 5px 0 rgba(0, 0, 0, .12),
-    0 3px 1px -2px rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 2px 0 rgba(24,18,30, .14),
+    0 1px 5px 0 rgba(24,18,30, .12),
+    0 3px 1px -2px rgba(24,18,30, .12);
     &:hover {
         background: rgb(198, 165, 103);
     }
@@ -48,6 +48,7 @@ const PostContent = styled.div `
         width: 600px;
         height: 350px;
         margin-bottom: 10px;
+        box-shadow: .5px .5px 2px #18121E;
     }
     h1 {
         margin: 0;
@@ -67,10 +68,10 @@ const PostDiv = styled.div `
 const BodyContainer = styled.div `
     width: 90%;
     border: none;
-    background: rgba(35,50,55, .6);
+    background: rgba(24,18,30, .6);
     p {
         text-align: left;
-        border: 1px solid white;
+        border: 3px solid #984343;
         margin: 10px;
         padding: 8px;
         letter-spacing: .05rem;
@@ -182,7 +183,7 @@ class ShowPost extends Component {
             <h1>{this.props.post.title}</h1>
             </PostDiv>
             <PostDiv>
-            <img src={this.props.post.image} alt={this.props.post.title} />
+            {this.props.post.image ? <img src={this.props.post.image} alt={this.props.post.title} /> : ''}
             <BodyContainer>
             <p>
             <h4>Rating: {this.props.post.rating}/10</h4>

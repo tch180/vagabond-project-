@@ -5,20 +5,23 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 import ShowPost from '../Post/ShowPost'
 
-const notPostContainer = styled.div`
-display: flex;
-text-align:center;
-justify-content: center;
-background-color: #233237;
-color: white;
-border: 1px solid grey;
-height: 90vh;
-`
+
+/* Don't thing we need this stryling component */
+// const notPostContainer = styled.div`
+// display: flex;
+// text-align:center;
+// justify-content: center;
+// background-color: #233237;
+// color: white;
+// border: 1px solid grey;
+// height: 90vh;
+// `
 
 
 const Container = styled.div`
 display: flex;
 flex-direction: column;
+width: 100%;
 background-color: #233237;
 boarder-radius: 20px;
 
@@ -33,18 +36,38 @@ margin: 0px;
 img {
 max-width: 100%;
 height: 500px;
-box-shadow: 3px 3px 10px #99864A;
+margin-top: 20px;
+box-shadow: 3px 3px 10px #18121E;
 }
 `
 const AddPost = styled.div`
-background: #984343;
-padding: 15px;
-margin: 5px;
-max-width: 25vw;
-color: white;
-a {
-text-decoration: none;
-}
+    display: flex;
+    justify-content: center;
+    button {
+    background: #EAC67A;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    text-align: cneter;
+    letter-spacing: .1em;
+    font-size: 1rem;
+    border: none;
+    margin: 5px;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    box-shadow: 0 2px 2px 0 rgba(24,18,30, .14),
+    0 1px 5px 0 rgba(24,18,30, .12),
+    0 3px 1px -2px rgba(24,18,30, .12);
+    &:hover {
+        background: rgb(198, 165, 103);
+    }
+    }
+    a {
+        text-deocration: none;
+    }
 `
 const PostContainer = styled.div`
 display: flex;
@@ -57,17 +80,25 @@ padding: 10px;
 
 `
 const InfoBar = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
 background: #984343;
-width: 100%;
+box-shadow: 3px 3px 10px #18121E;
+width: 100vw;
 padding: 0px;
 margin: 0px;
+h2 {
+    margin: 2px 0px;
+}
 `
 const PostBlock = styled.div`
 background: #984343;
 padding: 15px;
 margin: 5px;
+box-shadow: 3px 3px 10px #18121E;
 border: 3px solid black;
-    border-radius: 35px;
+border-radius: 35px;
 `
 
 class CityShow extends Component {
@@ -154,12 +185,12 @@ class CityShow extends Component {
         return (
             <Container>
                 <HeaderContainer>
-                    <InfoBar>City: {this.state.cities.name} Region: {this.state.cities.region} Country: {this.state.cities.country}</InfoBar>
+                    <InfoBar><h2>{this.state.cities.name} - {this.state.cities.region} - {this.state.cities.country}</h2></InfoBar>
                     <div><img src={this.state.cities.image} /></div><br />
 
                 </HeaderContainer>
                 <div>
-                    <center><Link to={`/city/${this.props.match.params.cityId}/NewPost`}><AddPost>Add Post</AddPost></Link></center>
+                    <AddPost><Link to={`/city/${this.props.match.params.cityId}/NewPost`}><button>Add Post</button></Link></AddPost>
                     {postView}
                </div>
             </Container>
