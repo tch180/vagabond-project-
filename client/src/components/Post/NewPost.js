@@ -114,7 +114,7 @@ class NewPost extends Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         const cityId = this.props.match.params.cityId
-        const res = await axios.post(`/api/cities/${cityId}/posts`, { post: this.state.post })
+        await axios.post(`/api/cities/${cityId}/posts`, { post: this.state.post })
         this.setState({ redirectToPost: true })
 
     }

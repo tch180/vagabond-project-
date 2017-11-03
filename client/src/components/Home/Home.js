@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as  Link } from 'react-router-dom'
 import axios from 'axios'
 
 const CityContainer = styled.div `
@@ -109,7 +109,7 @@ class HomePage extends Component {
                 <CityList>
                     {this.state.cities.map((city, index) => {
                         return ( <CityContainer key={index}><Link to={`/city/${city.id}`}>
-                            <img src={city.image}/>
+                            <img src={city.image} alt={city.name}/>
                             <h3>{city.name}</h3>
                             </Link>
                         </CityContainer>
