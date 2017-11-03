@@ -195,7 +195,7 @@ class ShowPost extends Component {
     }
 
     showUpdateForm = (event) => {
-        if (this.state.toggleUpdate == true) {
+        if (this.state.toggleUpdate === true) {
             this.handleSubmit(event)
         }
         this.setState({

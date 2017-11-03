@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import { Parallax } from 'react-parallax'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom'
 import axios from 'axios'
 import ShowPost from '../Post/ShowPost'
 
@@ -181,7 +180,7 @@ class CityShow extends Component {
                 <HeaderContainer>
                     {/* bar showing all the city info that changes per city */}
                     <InfoBar><h2>{this.state.cities.name} - {this.state.cities.region} - {this.state.cities.country}</h2></InfoBar>
-                    <div><img src={this.state.cities.image} /></div><br />
+                    <div><img src={this.state.cities.image} alt={this.state.cities.name} /></div><br />
 
                 </HeaderContainer>
                 <div>

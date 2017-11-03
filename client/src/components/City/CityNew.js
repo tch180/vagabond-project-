@@ -114,7 +114,7 @@ class CityNew extends Component {
     // this handles the submit function specifically setup on the back end to allow this route directly
     handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await axios.post(`/api/cities/`, { city: this.state.city })
+        await axios.post(`/api/cities/`, { city: this.state.city })
         this.setState({ redirectToHome: true })
 
     }
@@ -126,7 +126,7 @@ class CityNew extends Component {
         return (
             <CityContainer>
 
-{/* newcitycontainer will not allow the empty required fields on the front in to correspond to the backend requirements */}
+                {/* newcitycontainer will not allow the empty required fields on the front in to correspond to the backend requirements */}
                 <NewCityContainer>
                     <form onSubmit={this.handleSubmit}>
                         <h2>New City</h2>
