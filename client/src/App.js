@@ -5,6 +5,7 @@ import Home from './components/Home/Home'
 import NavBar from './components/BoilerPlate/NavBar'
 import CityShow from './components/City/Show'
 import NewPost from './components/Post/NewPost'
+import CityNew from './components/City/CityNew'
 import './App.css'
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/NewCity" component={CityNew} />
             <Route exact path="/city/:cityId" component={CityShow} />
             <Route exact path="/city/:cityId/NewPost" component={NewPost} />
           </Switch>
