@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import ShowPost from '../Post/ShowPost'
 
@@ -113,7 +113,7 @@ class CityShow extends Component {
     // gets city Info...... and mounts it....
     getCityInfo = async () => {
         try {
-            const cityId = this.props.history.location.state
+            const cityId = this.props.history.location.state.id
 
             const res = await axios.get(`/api/cities/${cityId}`)
             this.setState({ cities: res.data })
@@ -130,7 +130,7 @@ class CityShow extends Component {
     }
 
     handleUpdateSubmit = async (postId) => {
-        const cityId = this.props.history.location.state
+        const cityId = this.props.history.location.state.id
         const res = await axios.patch(`/api/cities/${cityId}/posts/${postId}`, {
             post: this.state.currentPost
         })
@@ -144,7 +144,7 @@ class CityShow extends Component {
 // deletes the post and redirects to index page of posts
 
     deletePost = async (postId) => {
-        const cityId = this.props.history.location.state
+        const cityId = this.props.history.location.state.id
         const res = await axios.delete(`/api/cities/${cityId}/posts/${postId}`)
         const city = res.data
         this.setState({ cities: city })
@@ -185,7 +185,7 @@ class CityShow extends Component {
                 </HeaderContainer>
                 <div>
                     {/* allows a add post function to the city lited */}
-                    <AddPost><Link to={{ pathname: `/${this.state.cities.name}/NewPost`, state: `${this.state.cities.id}` }}><button>Add Post</button></Link></AddPost>
+                    <AddPost><Link to={{ pathname: `/${this.state.cities.name}/NewPost`, state: {id: this.state.cities.id} }}><button>Add Post</button></Link></AddPost>
                     {/* this will show a list of all posts assigned to this city */}
                     {postView}
                </div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import { BrowserRouter as  Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const CityContainer = styled.div `
@@ -88,9 +88,9 @@ class HomePage extends Component {
     async componentWillMount() {
         try {
             const res =await axios.get('/api/cities')
-            console.log(res.data.id)
             this.setState({ cities: res.data})
-        }catch(error){
+            console.log(this.state.cities)
+        } catch(error){
             console.log(error)
         }
         
@@ -108,13 +108,12 @@ class HomePage extends Component {
             {/* this will map through all current cities added to the database */}
                 <CityList>
                     {this.state.cities.map((city, index) => {
-                        return ( <CityContainer key={index}><Link to={{ pathname: `/${city.name}`, state: `${city.id}` }}>
-                            <img src={city.image}/>
-                            <h3>{city.name}</h3>
-                            </Link>
+                        return (<CityContainer key={index}>
+                        <Link to={{ pathname: `/${city.name}`, state: {id: city.id} }}>
+                        <img src={city.image} alt={city.name} />
+                        <h3>{city.name}</h3>
+                        </Link>
                         </CityContainer>
-                        
-
                         )
                     })}
                   
