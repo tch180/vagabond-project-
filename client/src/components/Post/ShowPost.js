@@ -11,7 +11,15 @@ const PostContainer = styled.div `
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    @media only screen and (max-width: 668px) {
+        mrgin: 5px;
+        padding: 5px;
+}
+`
+const ButtonContainer = styled.div `
+    display: flex;
+    justify-contents: center;
+    align-items: center;
     button {
     background: #EAC67A;
     color: white;
@@ -33,7 +41,10 @@ const PostContainer = styled.div `
     &:hover {
         background: rgb(198, 165, 103);
     }
-}
+    }
+    @media only screen and (max-width: 668px) {
+        flex-direction: column;
+    }
 `
 
 const PostContent = styled.div `
@@ -55,7 +66,8 @@ const PostContent = styled.div `
     } 
     @media only screen and (max-width: 668px) {
         img {
-            width: 75vw;
+            width: 55vw;
+            height: 25vh;
         }    
     }
 `
@@ -68,6 +80,11 @@ const PostDiv = styled.div `
         align-items: center;
         margin: 10px;
         padding: 20px;
+        @media only screen and (max-width: 668px) {
+            text-align: center;
+            padding: 5px;
+            margin: 5px;
+        }
 `
 
 const BodyContainer = styled.div `
@@ -84,6 +101,11 @@ const BodyContainer = styled.div `
             text-align: center;
         }
     }
+    @media only screen and (max-width: 668px) {
+        padding: 3px;
+        p{
+            font-size: .7em;
+        }
 `
 
 const UpdatePostContainer = styled.div `
@@ -120,6 +142,11 @@ textarea {
     padding: 10px;
 }
 @media only screen and (max-width: 668px) {
+       margin: 0px;
+       padding: 2px;
+       input, textarea {
+        font-size: 1em;
+       }
             
     }
 `
@@ -135,6 +162,28 @@ const DeleteConfirm = styled.div `
     div {
         display: flex;
         justify-content: center;
+    }
+    button {
+    background: #EAC67A;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    text-align: cneter;
+    letter-spacing: .1em;
+    font-size: 1rem;
+    border: none;
+    margin: 5px;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    box-shadow: 0 2px 2px 0 rgba(24,18,30, .14),
+    0 1px 5px 0 rgba(24,18,30, .12),
+    0 3px 1px -2px rgba(24,18,30, .12);
+    &:hover {
+        background: rgb(198, 165, 103);
+    }
     }
 `
     
@@ -213,11 +262,11 @@ class ShowPost extends Component {
         return (
             <div>
                 <PostContainer>
-                <div>
-                <button onClick={this.props.toggleSwitch}>All Posts</button>
-                <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update Post' }</button>
-                <button onClick={this.showDelete}>Delete Post</button>
-                </div>
+                <ButtonContainer>
+                <button onClick={this.props.toggleSwitch}>Posts</button>
+                <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update' }</button>
+                <button onClick={this.showDelete}>Delete</button>
+                </ButtonContainer>
                 {postView}
                 </PostContainer>
             </div>

@@ -88,6 +88,9 @@ margin: 5px;
 box-shadow: 3px 3px 10px #18121E;
 border: 3px solid black;
 border-radius: 35px;
+font-weight: bold;
+@media only screen and (max-width: 668px) {
+    font-weight: normal;
 `
 
 class CityShow extends Component {
@@ -160,11 +163,10 @@ class CityShow extends Component {
                 handleUpdateChange={this.handleUpdateChange}
                 handleUpdateSubmit={this.handleUpdateSubmit} /> :
             <PostContainer>
-                {/* <Link to="/city/${}" */}
                 {this.state.cities.posts.map((post, index) => {
                     return (
                         <PostBlock key={index} onClick={() => this.showPost(index)}>
-                            <div><b>{post.title}</b></div>
+                            <div>{post.title} ({post.rating}/10)</div>
                         </PostBlock>)
                 })}
 
