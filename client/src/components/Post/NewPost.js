@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
-const PostContainer = styled.div `
+const PostContainer = styled.div`
 display: flex;
 text-align:center;
 justify-content: center;
@@ -11,7 +11,7 @@ background-color: #233237;
 color: white;
 `
 
-const NewPostContainer = styled.div `
+const NewPostContainer = styled.div`
 background: #984343;
 border: 1px solid grey;
 padding: 20px;
@@ -108,61 +108,64 @@ class NewPost extends Component {
             ...this.state.post
         }
         updatePost[event.target.name] = event.target.value
-        this.setState({post: updatePost})
+        this.setState({ post: updatePost })
     }
-    handleSubmit = async(event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
         const cityId = this.props.match.params.cityId
-        const res = await axios.post(`/api/cities/${cityId}/posts`, {post: this.state.post})
-        this.setState({redirectToPost: true})
+        const res = await axios.post(`/api/cities/${cityId}/posts`, { post: this.state.post })
+        this.setState({ redirectToPost: true })
 
     }
     render() {
         if (this.state.redirectToPost) {
-            return <Redirect to={`/city/${this.props.match.params.cityId}`}/>
+            return <Redirect to={`/city/${this.props.match.params.cityId}`} />
         }
         return (
 
             <PostContainer>
 
-                
-                    <NewPostContainer>
+
+                <NewPostContainer>
                     <form onSubmit={this.handleSubmit}>
-                            <h2>New Post</h2>
+                        <h2>New Post</h2>
                         <input
                             placeholder='Title of your post'
                             onChange={this.handleChange}
                             name="title"
                             type="text"
-                            value={this.state.post.title}/>
-                            <input
-                                placeholder='Ratings'
-                                className="rating"
-                                onChange={this.handleChange}
-                                name="rating"
-                                type="number"
-                                max='10'
-                                min='1'
-                                value={this.state.post.rating}/>
+                            required
+                            maxLength="200"
+                            value={this.state.post.title} />
+                        <input
+                            placeholder='Ratings'
+                            className="rating"
+                            onChange={this.handleChange}
+                            name="rating"
+                            type="number"
+                            max='10'
+                            min='1'
+                            value={this.state.post.rating} />
 
-                            <input
-                                placeholder='Picture'
-                                onChange={this.handleChange}
-                                name="image"
-                                type="text"
-                                value={this.state.post.image}/>
+                        <input
+                            placeholder='Picture'
+                            onChange={this.handleChange}
+                            name="image"
+                            type="text"
+                            value={this.state.post.image} />
 
-                            <textarea
-                                value={this.state.post.body}
-                                htmlFor="body"
-                                placeholder="Please enter your Review"
-                                name="body"
-                                onChange={this.handleChange}/>
+                        <textarea
+                            value={this.state.post.body}
+                            htmlFor="body"
+                            placeholder="Please enter your Review"
+                            name="body"
+                            required
+                            onChange={this.handleChange} />
                         <div>
-                        <button>Post!</button>
+                            <button>Post!</button>
                         </div>
-                        </form>
-                    </NewPostContainer>
+                    </form>
+                </NewPostContainer>
 
 
             </PostContainer>

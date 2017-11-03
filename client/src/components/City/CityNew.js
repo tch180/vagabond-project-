@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
-const CityContainer = styled.div `
+const CityContainer = styled.div`
 display: flex;
 text-align:center;
 justify-content: center;
@@ -11,7 +11,7 @@ background-color: #233237;
 color: white;
 `
 
-const NewCityContainer = styled.div `
+const NewCityContainer = styled.div`
 background: #984343;
 border: 1px solid grey;
 padding: 20px;
@@ -109,58 +109,62 @@ class CityNew extends Component {
             ...this.state.city
         }
         updateCity[event.target.name] = event.target.value
-        this.setState({city: updateCity})
+        this.setState({ city: updateCity })
     }
-    handleSubmit = async(event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await axios.post(`/api/cities/`, {city: this.state.city})
-        this.setState({redirectToHome: true})
+        const res = await axios.post(`/api/cities/`, { city: this.state.city })
+        this.setState({ redirectToHome: true })
 
     }
 
     render() {
         if (this.state.redirectToHome) {
-            return <Redirect to={'/'}/>
+            return <Redirect to={'/'} />
         }
         return (
             <CityContainer>
 
-                
-                    <NewCityContainer>
+
+                <NewCityContainer>
                     <form onSubmit={this.handleSubmit}>
-                            <h2>New City</h2>
+                        <h2>New City</h2>
                         <input
                             placeholder='City Name'
                             onChange={this.handleChange}
                             name="name"
                             type="text"
-                            value={this.state.city.name}/>
-                            <input
-                                placeholder='Region'
-                                onChange={this.handleChange}
-                                name="region"
-                                type="text"
-                                value={this.state.city.region}/>
-                             <input
-                                placeholder='Country'
-                                onChange={this.handleChange}
-                                name="country"
-                                type="text"
-                                value={this.state.city.country}/>
+                            required
+                            value={this.state.city.name} />
+                        <input
+                            placeholder='Region'
+                            onChange={this.handleChange}
+                            name="region"
+                            type="text"
+                            required
+                            value={this.state.city.region} />
+                        <input
+                            placeholder='Country'
+                            onChange={this.handleChange}
+                            name="country"
+                            type="text"
+                            required
+                            value={this.state.city.country} />
 
-                            <input
-                                placeholder='Picture'
-                                onChange={this.handleChange}
-                                name="image"
-                                type="text"
-                                value={this.state.city.image}/>
+                        <input
+                            placeholder='Picture'
+                            onChange={this.handleChange}
+                            name="image"
+                            type="text"
+                            required
+                            value={this.state.city.image} />
 
 
                         <div>
-                        <button>Create City</button>
+                            <button>Create City</button>
                         </div>
-                        </form>
-                    </NewCityContainer>
+                    </form>
+                </NewCityContainer>
 
 
             </CityContainer>
