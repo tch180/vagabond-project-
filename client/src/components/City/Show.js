@@ -109,6 +109,7 @@ class CityShow extends Component {
         this.getCityInfo()
 
     }
+    // gets city Info...... and mounts it....
     getCityInfo = async () => {
         try {
             const cityId = this.props.match.params.cityId
@@ -119,7 +120,7 @@ class CityShow extends Component {
             console.log(error)
         }
     }
-
+// this will allow fields in the update to be changed 
     handleUpdateChange = (event) => {
         const attribute = event.target.name
         const updatePost = { ...this.state.currentPost }
@@ -139,16 +140,15 @@ class CityShow extends Component {
     toggleSwitch = () => {
         this.setState({ togglePostView: !this.state.togglePostView })
     }
-
+// deletes the post and redirects to index page of posts
 
     deletePost = async (postId) => {
         const cityId = this.props.match.params.cityId
-        console.log(this.props.match.params.cityId)
         const res = await axios.delete(`/api/cities/${cityId}/posts/${postId}`)
         const city = res.data
         this.setState({ cities: city })
     }
-
+// this will set the view state to the clicked post and show just this post on the same page without a redirect
     showPost = (index) => {
         this.toggleSwitch()
         const post = this.state.cities.posts[index]
@@ -156,6 +156,7 @@ class CityShow extends Component {
     }
 
     render() {
+        // passing props down for the current state to the show post page to keep it stateful
         const postView = this.state.togglePostView ?
             <ShowPost post={this.state.currentPost}
                 deletePost={this.deletePost}
@@ -176,12 +177,15 @@ class CityShow extends Component {
         return (
             <Container>
                 <HeaderContainer>
+                    {/* bar showing all the city info that changes per city */}
                     <InfoBar><h2>{this.state.cities.name} - {this.state.cities.region} - {this.state.cities.country}</h2></InfoBar>
                     <div><img src={this.state.cities.image} /></div><br />
 
                 </HeaderContainer>
                 <div>
+                    {/* allows a add post function to the city lited */}
                     <AddPost><Link to={`/city/${this.props.match.params.cityId}/NewPost`}><button>Add Post</button></Link></AddPost>
+                    {/* this will show a list of all posts assigned to this city */}
                     {postView}
                </div>
             </Container>

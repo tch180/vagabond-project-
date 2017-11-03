@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components'
 
 
-const PostContainer = styled.div `
+const PostContainer = styled.div`
     background: #984343;
     margin: 20px;
     padding: 15px;
@@ -16,7 +16,7 @@ const PostContainer = styled.div `
         padding: 5px;
 }
 `
-const ButtonContainer = styled.div `
+const ButtonContainer = styled.div`
     display: flex;
     justify-contents: center;
     align-items: center;
@@ -47,7 +47,7 @@ const ButtonContainer = styled.div `
     }
 `
 
-const PostContent = styled.div `
+const PostContent = styled.div`
     color: white;
     display: flex;
     justify-content: center;
@@ -71,7 +71,7 @@ const PostContent = styled.div `
         }    
     }
 `
-const PostDiv = styled.div `
+const PostDiv = styled.div`
         border: 2px solid white;
         width: 110%;
         display: flex;
@@ -87,7 +87,7 @@ const PostDiv = styled.div `
         }
 `
 
-const BodyContainer = styled.div `
+const BodyContainer = styled.div`
     width: 90%;
     border: none;
     background: rgba(24,18,30, .6);
@@ -108,7 +108,7 @@ const BodyContainer = styled.div `
         }
 `
 
-const UpdatePostContainer = styled.div `
+const UpdatePostContainer = styled.div`
 margin: 40px;
 padding: 40px;
 border: 2px solid white;
@@ -151,7 +151,7 @@ textarea {
     }
 `
 
-const DeleteConfirm = styled.div `
+const DeleteConfirm = styled.div`
     width: 90%;
     h2 {
         text-align: center;
@@ -186,7 +186,7 @@ const DeleteConfirm = styled.div `
     }
     }
 `
-    
+
 
 class ShowPost extends Component {
     state = {
@@ -195,7 +195,7 @@ class ShowPost extends Component {
     }
 
     showUpdateForm = (event) => {
-        if(this.state.toggleUpdate == true) {
+        if (this.state.toggleUpdate == true) {
             this.handleSubmit(event)
         }
         this.setState({
@@ -207,72 +207,77 @@ class ShowPost extends Component {
     handleChange = (event) => {
         this.props.handleUpdateChange(event)
     }
-
-    showDelete =() => {
+// this shows the warning and confirmation for the delete
+    showDelete = () => {
         this.setState({
             toggleDelete: !this.state.toggleDelete
         })
     }
 
-    
+// this deletes
     delete = (e) => {
-    e.preventDefault()
-    this.props.deletePost(this.props.post.id)
-    this.props.toggleSwitch()
+        e.preventDefault()
+        this.props.deletePost(this.props.post.id)
+        this.props.toggleSwitch()
     }
-    
+
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.handleUpdateSubmit(this.props.post.id)
     }
 
     render() {
+        // when a user clicks delete it is brought to this prompt which will actually control whether or not the post will be deleted
         const deleteConfirmation = <DeleteConfirm>
             <h2>Are you sure?</h2>
             <div>
-            <button onClick={this.delete}>Yes</button>
-            <button onClick={this.showDelete}>No</button>
+                <button onClick={this.delete}>Yes</button>
+                <button onClick={this.showDelete}>No</button>
             </div>
         </DeleteConfirm>
-
+        // post container that contains all information and is displayed as the view
         const post = <PostContent>
             <PostDiv>
-            <h1>{this.props.post.title}</h1>
+                <h1>{this.props.post.title}</h1>
             </PostDiv>
             <PostDiv>
-            {this.props.post.image ? <img src={this.props.post.image} alt={this.props.post.title} /> : ''}
-            <BodyContainer>
-            <p>
-            <h4>Rating: {this.props.post.rating}/10</h4>
-            {this.props.post.body}
-            </p>
-            </BodyContainer>
+                {this.props.post.image ? <img src={this.props.post.image} alt={this.props.post.title} /> : ''}
+                <BodyContainer>
+                    <p>
+                        <h4>Rating: {this.props.post.rating}/10</h4>
+                        {this.props.post.body}
+                    </p>
+                </BodyContainer>
             </PostDiv>
         </PostContent>
+        // after the update button clicked this is viewed for the update view
         const updateView = <UpdatePostContainer>
             <input name="title" type="text" value={this.props.post.title} onChange={this.handleChange} />
             <input name="image" type="text" value={this.props.post.image} onChange={this.handleChange} />
             <input name="rating" type="number" className='rating' value={this.props.post.rating} onChange={this.handleChange} />
             <textarea value={this.props.post.body} htmlFor="body" name="body" onChange={this.handleChange} />
         </UpdatePostContainer>
+        // sets the state for the view tertiary
         const postView = this.state.toggleUpdate
             ? updateView
             : this.state.toggleDelete ? deleteConfirmation : post
-            
+
         return (
             <div>
                 <PostContainer>
-                <ButtonContainer>
-                <button onClick={this.props.toggleSwitch}>Posts</button>
-                <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update' }</button>
-                <button onClick={this.showDelete}>Delete</button>
-                </ButtonContainer>
-                {postView}
-                <ButtonContainer>
-                <button onClick={this.props.toggleSwitch}>Posts</button>
-                <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update' }</button>
-                <button onClick={this.showDelete}>Delete</button>
-                </ButtonContainer>
+                    <ButtonContainer>
+                        {/* these are what change the states to tertiary do swap the views on the page to the corresponding functions */}
+                        <button onClick={this.props.toggleSwitch}>Posts</button>
+                        <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update'}</button>
+                        <button onClick={this.showDelete}>Delete</button>
+                    </ButtonContainer>
+                    {postView}
+                    <ButtonContainer>
+                        {/* same as above but at the bottom of the view */}
+                        <button onClick={this.props.toggleSwitch}>Posts</button>
+                        <button onClick={this.showUpdateForm}>{this.state.toggleUpdate ? 'Save' : 'Update'}</button>
+                        <button onClick={this.showDelete}>Delete</button>
+                    </ButtonContainer>
                 </PostContainer>
             </div>
         );
