@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import {Parallax} from 'react-parallax'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -41,12 +40,14 @@ const CityList = styled.div `
     color: #18121E;
 `
 
-const HeroContainer = styled.div `
-    height: 60vh;
-    background-image: url('../../../images/Seattle-Wallpaper-24.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
+const ParallaxContainer = styled.div `
+    height: 70vh;
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-size: cover;
     background-position: center;
+    position: relative;
+    background-image: url('../../../images/Seattle-Wallpaper-24.jpg');
     div {
         width: 100%;
         height: 100%;
@@ -57,13 +58,23 @@ const HeroContainer = styled.div `
         color: white;
         h1{
             font-size: 4em;
+            text-align: center
+        }
+    }
+    @media only screen and (max-width: 668px) {
+        height: 50vh;
+        div {
+            h1{
+            font-size: 2em;
+            }
         }
     }
     @media only screen and (max-width: 420px) {
-        height: 36vh;
+        height: 35vh;
+        background-size: auto;
         div {
             h1{
-            font-size: 1em;
+            font-size: 2em;
             }
         }
     }
@@ -88,16 +99,11 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                {/* <Parallax bgImage="../../../images/Seattle-Wall            paper-24.jpg" strength={400}>
-                <HeroContainer>
-                <h1> some content that is displayed above the bgImage </h1>
-                </HeroContainer>
-            </Parallax> */}
-                <HeroContainer>
-                    <div>
-                        <h1>Welcome to Vagabong Travel</h1>
-                    </div>
-                </HeroContainer>
+            <ParallaxContainer>
+                <div>
+                    <h1>Welcome to Vagabong Travel</h1>
+                </div>
+            </ParallaxContainer>
                 <CityList>
                     {this.state.cities.map((city, index) => {
                         return ( <CityContainer key={index}><Link to={`/city/${city.id}`}>
