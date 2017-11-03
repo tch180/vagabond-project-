@@ -10,6 +10,9 @@ const PostContainer = styled.div `
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 3px solid black;
+    border-radius: 35px;
+}
 `
 
 const PostContent = styled.div `
@@ -23,6 +26,10 @@ const PostContent = styled.div `
     img {
         width: 350px;
     }
+    button {
+    color: black;
+    background: white;
+}
     
 `
 

@@ -10,8 +10,9 @@ text-align:center;
 justify-content: center;
 background-color: #233237;
 color: white;
-border: 1px solid grey;
 height: 90vh;
+
+
 `
 
 const NewPostContainer = styled.div `
@@ -37,7 +38,7 @@ button {
 div {
     padding: 10px 0px;
     /* margin: 10px; */
-}
+  
 textarea {
     width: 25vw;
     height: 15vh;

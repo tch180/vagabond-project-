@@ -20,6 +20,7 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 background-color: #233237;
+boarder-radius: 20px;
 
 
 `
@@ -53,6 +54,7 @@ text-align: center;
 margin: 10px;
 padding: 10px;
 
+
 `
 const InfoBar = styled.div`
 background: #984343;
@@ -64,6 +66,8 @@ const PostBlock = styled.div`
 background: #984343;
 padding: 15px;
 margin: 5px;
+border: 3px solid black;
+    border-radius: 35px;
 `
 
 class CityShow extends Component {
