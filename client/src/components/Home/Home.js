@@ -99,11 +99,13 @@ class HomePage extends Component {
     render() {
         return (
             <div>
+                {/* this adds the paralax function to our background image  */}
             <ParallaxContainer>
                 <div>
                     <h1>Welcome to Vagabong Travel</h1>
                 </div>
             </ParallaxContainer>
+            {/* this will map through all current cities added to the database */}
                 <CityList>
                     {this.state.cities.map((city, index) => {
                         return ( <CityContainer key={index}><Link to={`/city/${city.id}`}>

@@ -110,6 +110,7 @@ class NewPost extends Component {
         updatePost[event.target.name] = event.target.value
         this.setState({ post: updatePost })
     }
+    // this specific route adds to the city id pulled from nav bar
     handleSubmit = async (event) => {
         event.preventDefault()
         const cityId = this.props.match.params.cityId
@@ -118,13 +119,14 @@ class NewPost extends Component {
 
     }
     render() {
+        // redirect to the list of posts
         if (this.state.redirectToPost) {
             return <Redirect to={`/city/${this.props.match.params.cityId}`} />
         }
         return (
 
             <PostContainer>
-
+{/* this will not allow any empty fields that are required on the api side */}
 
                 <NewPostContainer>
                     <form onSubmit={this.handleSubmit}>
