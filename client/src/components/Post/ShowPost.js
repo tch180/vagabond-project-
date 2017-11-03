@@ -106,6 +106,7 @@ const BodyContainer = styled.div`
         p{
             font-size: .7em;
         }
+    }
 `
 
 const UpdatePostContainer = styled.div`
@@ -146,8 +147,7 @@ textarea {
        padding: 2px;
        input, textarea {
         font-size: 1em;
-       }
-            
+       }       
     }
 `
 
@@ -207,14 +207,14 @@ class ShowPost extends Component {
     handleChange = (event) => {
         this.props.handleUpdateChange(event)
     }
-// this shows the warning and confirmation for the delete
+/* this shows the warning and confirmation for the delete */
     showDelete = () => {
         this.setState({
             toggleDelete: !this.state.toggleDelete
         })
     }
 
-// this deletes
+/* this deletes */
     delete = (e) => {
         e.preventDefault()
         this.props.deletePost(this.props.post.id)
@@ -227,7 +227,7 @@ class ShowPost extends Component {
     }
 
     render() {
-        // when a user clicks delete it is brought to this prompt which will actually control whether or not the post will be deleted
+        /* when a user clicks delete it is brought to this prompt which will actually control whether or not the post will be deleted */
         const deleteConfirmation = <DeleteConfirm>
             <h2>Are you sure?</h2>
             <div>
@@ -235,7 +235,7 @@ class ShowPost extends Component {
                 <button onClick={this.showDelete}>No</button>
             </div>
         </DeleteConfirm>
-        // post container that contains all information and is displayed as the view
+        /* post container that contains all information and is displayed as the view */
         const post = <PostContent>
             <PostDiv>
                 <h1>{this.props.post.title}</h1>

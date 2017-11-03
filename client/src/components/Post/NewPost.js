@@ -113,15 +113,20 @@ class NewPost extends Component {
     // this specific route adds to the city id pulled from nav bar
     handleSubmit = async (event) => {
         event.preventDefault()
-        const cityId = this.props.match.params.cityId
+        const cityId = this.props.history.location.state
         const res = await axios.post(`/api/cities/${cityId}/posts`, { post: this.state.post })
         this.setState({ redirectToPost: true })
 
     }
+
+    componentWillMount() {
+        console.log(this.props.history.location.state)
+    }
     render() {
         // redirect to the list of posts
+        const cityId = this.props.history.location.state
         if (this.state.redirectToPost) {
-            return <Redirect to={`/city/${this.props.match.params.cityId}`} />
+            return <Redirect to={{ pathname: `/${this.props.match.params.cityName}`, state: `${cityId}` }} />
         }
         return (
 

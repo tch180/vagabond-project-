@@ -108,7 +108,7 @@ class HomePage extends Component {
             {/* this will map through all current cities added to the database */}
                 <CityList>
                     {this.state.cities.map((city, index) => {
-                        return ( <CityContainer key={index}><Link to={`/city/${city.id}`}>
+                        return ( <CityContainer key={index}><Link to={{ pathname: `/${city.name}`, state: `${city.id}` }}>
                             <img src={city.image}/>
                             <h3>{city.name}</h3>
                             </Link>

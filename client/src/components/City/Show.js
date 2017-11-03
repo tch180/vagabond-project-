@@ -91,6 +91,7 @@ border-radius: 35px;
 font-weight: bold;
 @media only screen and (max-width: 668px) {
     font-weight: normal;
+}
 `
 
 class CityShow extends Component {
@@ -106,13 +107,14 @@ class CityShow extends Component {
     }
 
     async componentWillMount() {
+        console.log()
         this.getCityInfo()
 
     }
     // gets city Info...... and mounts it....
     getCityInfo = async () => {
         try {
-            const cityId = this.props.match.params.cityId
+            const cityId = this.props.history.location.state
 
             const res = await axios.get(`/api/cities/${cityId}`)
             this.setState({ cities: res.data })
@@ -129,7 +131,7 @@ class CityShow extends Component {
     }
 
     handleUpdateSubmit = async (postId) => {
-        const cityId = this.props.match.params.cityId
+        const cityId = this.props.history.location.state
         const res = await axios.patch(`/api/cities/${cityId}/posts/${postId}`, {
             post: this.state.currentPost
         })
@@ -143,7 +145,7 @@ class CityShow extends Component {
 // deletes the post and redirects to index page of posts
 
     deletePost = async (postId) => {
-        const cityId = this.props.match.params.cityId
+        const cityId = this.props.history.location.state
         const res = await axios.delete(`/api/cities/${cityId}/posts/${postId}`)
         const city = res.data
         this.setState({ cities: city })
@@ -184,7 +186,7 @@ class CityShow extends Component {
                 </HeaderContainer>
                 <div>
                     {/* allows a add post function to the city lited */}
-                    <AddPost><Link to={`/city/${this.props.match.params.cityId}/NewPost`}><button>Add Post</button></Link></AddPost>
+                    <AddPost><Link to={{ pathname: `/${this.state.cities.name}/NewPost`, state: `${this.state.cities.id}` }}><button>Add Post</button></Link></AddPost>
                     {/* this will show a list of all posts assigned to this city */}
                     {postView}
                </div>
