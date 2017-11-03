@@ -22,6 +22,10 @@ flex-direction: column;
 background-color: #233237;
 boarder-radius: 20px;
 
+button {
+background: white;
+}
+
 
 `
 const HeaderContainer = styled.div`
@@ -30,10 +34,14 @@ flex-direction: column;
 align-self: center;
 text-align: center;
 margin: 0px;
+padding:30px;
+border: 5px; solid grey;
+border-radius: 20px;
 img {
 max-width: 100%;
 height: 500px;
 box-shadow: 3px 3px 10px #99864A;
+padding: 30px;
 }
 `
 const AddPost = styled.div`
@@ -52,7 +60,7 @@ flex-direction: column;
 align-self: center;
 text-align: center;
 margin: 10px;
-padding: 10px;
+padding: 40px;
 
 
 `

@@ -6,6 +6,10 @@ import NavBar from './components/BoilerPlate/NavBar'
 import CityShow from './components/City/Show'
 import NewPost from './components/Post/NewPost'
 import './App.css'
+
+
+
+
 class App extends Component {
   render() {
     return (
