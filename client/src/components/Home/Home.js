@@ -102,7 +102,7 @@ class HomePage extends Component {
                 {/* this adds the paralax function to our background image  */}
             <ParallaxContainer>
                 <div>
-                    <h1>Welcome to Vagabong Travel</h1>
+                    <h1>Welcome to Vagabond Travel</h1>
                 </div>
             </ParallaxContainer>
             {/* this will map through all current cities added to the database */}
